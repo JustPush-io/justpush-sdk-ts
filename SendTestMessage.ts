@@ -2,9 +2,7 @@ import { JustPushMessage } from './src/services/JustPushMessage'
 
 const test = async () => {
     try {
-        const justPushMessage = JustPushMessage.token(
-            '7W6rAhothzVrT6CBqMmtPiDukjhWJXKU'
-        )
+        const justPushMessage = JustPushMessage.token('test_token')
             .topic('JavascriptSDK')
             .message('Here is a sample Message')
             .acknowledge(true, true, 'https://www.google.ro')
