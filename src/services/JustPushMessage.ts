@@ -1,5 +1,5 @@
 import { Message, MessageCreatedResponse } from '../types'
-import { JustPushBase } from './JustPushBase'
+import { JustPushBase } from '../utils/JustPushBase'
 
 interface Button {
     cta: string
@@ -7,7 +7,7 @@ interface Button {
     actionRequired: boolean
 }
 
-export class JustPushMessage extends JustPushBase {
+class JustPushMessage extends JustPushBase {
     static ENDPOINT = '/messages'
 
     private messageParams: { [key: string]: any } = {}
@@ -111,21 +111,32 @@ export class JustPushMessage extends JustPushBase {
 
     acknowledge(
         requiresAcknowledgement: boolean,
-        callbackRequired = false,
         callbackUrl: string | null = null,
-        callbackParams: any = null
+        callbackParams: Record<string, any> | null = null,
+        requiresRetry: boolean = true,
+        retryInterval: number = 60,
+        maxRetries: number = 10,
+        callbackRequired: boolean = false
     ): this {
+        let retryIntervalPayload = {}
+        if (requiresRetry) {
+            retryIntervalPayload = {
+                requires_retry: requiresRetry,
+                retry_interval: retryInterval,
+                max_retries: maxRetries,
+            }
+        }
         this.messageParams['acknowledgement'] = {
             requires_acknowledgement: requiresAcknowledgement,
             callback_required: callbackRequired,
             callback_url: callbackUrl,
             callback_params: callbackParams,
+            ...retryIntervalPayload,
         }
         return this
     }
 
     async create(): Promise<MessageCreatedResponse> {
-        console.log('Body: ', JSON.stringify(this.messageParams, null, 4))
         return await this.request(JustPushMessage.ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -149,3 +160,5 @@ export class JustPushMessage extends JustPushBase {
         return this.messageParams
     }
 }
+
+export default JustPushMessage

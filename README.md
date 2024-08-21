@@ -18,7 +18,7 @@ Welcome to the official TypeScript SDK for JustPush! This SDK allows you to easi
 Install the SDK via npm:
 
 ```bash
-npm i @justpush/justpush-ts-sdk
+npm i @justpush.io/justpush-js-sdk
 
 ```
 

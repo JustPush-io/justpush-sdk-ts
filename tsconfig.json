@@ -8,6 +8,9 @@
         "forceConsistentCasingInFileNames": true,
         "outDir": "./dist"
     },
+    "ts-node": {
+        "esm": true
+    },
     "include": ["src/**/*.ts", "test/**/*.ts", "*.ts"],
     "exclude": ["node_modules"]
 }

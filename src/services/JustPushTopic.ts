@@ -1,7 +1,7 @@
 import { Topic } from '../types'
-import { JustPushBase } from './JustPushBase'
+import { JustPushBase } from '../utils/JustPushBase'
 
-export class JustPushTopic extends JustPushBase {
+class JustPushTopic extends JustPushBase {
     static ENDPOINT = '/topics'
 
     private topicParams: { [key: string]: any } = {}
@@ -82,3 +82,5 @@ export class JustPushTopic extends JustPushBase {
         return this.topicParams
     }
 }
+
+export default JustPushTopic

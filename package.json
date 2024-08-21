@@ -1,24 +1,33 @@
 {
-    "name": "@justpush/justpush-ts-sdk",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "name": "@justpush.io/justpush-ts-sdk",
+    "version": "1.0.1",
+    "description": "This is the JustPush TypeScript SDK. It facilites sending messages to the JustPush mobile app.",
+    "main": "index.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "npx ts-node index.ts"
+        "test": "tsx src/tests/Topic.ts && tsx src/tests/Message.ts",
+        "publish": "npm publish --access public"
     },
     "keywords": [],
     "author": "",
+    "type": "module",
+    "moduleResolution": "Node",
     "license": "ISC",
+    "homepage": "https://github.com/JustPush-io/justpush-sdk-ts",
+    "compilerOptions": {
+        "esModuleInterop": true
+    },
     "dependencies": {
-        "@types/chai": "^4.3.16",
-        "@types/mocha": "^10.0.6",
-        "@types/node": "^20.14.2",
-        "chai": "^5.1.1",
-        "fetch-mock": "^9.11.0",
-        "mocha": "^10.4.0",
-        "node-fetch": "^3.3.2",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.4.5"
+        "@types/chai": "4.3.16",
+        "@types/mocha": "10.0.6",
+        "@types/node": "20.14.2",
+        "chai": "5.1.1",
+        "fetch-mock": "9.11.0",
+        "mocha": "10.4.0",
+        "node-fetch": "3.3.2",
+        "ts-node": "10.9.2",
+        "typescript": "5.4.5"
+    },
+    "devDependencies": {
+        "tsx": "4.17.0"
     }
 }
