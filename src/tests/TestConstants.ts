@@ -1,2 +1,2 @@
 // ADD API TOKEN HERE FOR RUNNING TESTS
-export const ACCESS_TOKEN = 'MW7z9OmUre5OMBxff2qgkrQquwocRHqK'
+export const ACCESS_TOKEN = ''

@@ -95,10 +95,10 @@ const response = await JustPushTopic.token('REPLACE_WITH_USER_TOKEN')
 This is a basic example of updating a topic
 
 ```js
-$response = JustPushTopic::token('REPLACE_WITH_USER_TOKEN')
-    ->topic('REPLACE_WITH_TOPIC_UUID')
-    ->title('New Topic Title')
-    ->update();
+$response = JustPushTopic.token('REPLACE_WITH_USER_TOKEN')
+    .topic('REPLACE_WITH_TOPIC_UUID')
+    .title('New Topic Title')
+    .update()
 ```
 
 ## GET / Get a topic
