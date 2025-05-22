@@ -123,7 +123,7 @@ Each button group object has the following fields:
 | ----------------- | ------- | -------- | --------------------------------------------------- |
 | `name`            | string  | Yes      | The name/title of the button group                  |
 | `cta`             | string  | Yes      | The call-to-action text for the group               |
-| `requires_action` | boolean | Yes      | Whether user interaction is required for this group |
+| `action_required` | boolean | Yes      | Whether user interaction is required for this group |
 | `buttons`         | array   | Yes      | Array of button objects within the group            |
 
 Each button in the `buttons` array has these fields:

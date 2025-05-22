@@ -1,6 +1,6 @@
 {
     "name": "@justpush.io/justpush-ts-sdk",
-    "version": "1.1.2",
+    "version": "1.1.4",
     "description": "This is the JustPush TypeScript SDK. It facilites sending messages to the JustPush mobile app.",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
