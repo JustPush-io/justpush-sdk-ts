@@ -1,11 +1,17 @@
 {
     "name": "@justpush.io/justpush-ts-sdk",
-    "version": "1.0.5",
+    "version": "1.1.2",
     "description": "This is the JustPush TypeScript SDK. It facilites sending messages to the JustPush mobile app.",
-    "main": "index.ts",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/types/index.d.ts",
     "scripts": {
         "test": "tsx src/tests/Topic.ts && tsx src/tests/Message.ts",
-        "publish": "npm publish --access public"
+        "publish": "npm run prepare && npm publish --access public",
+        "build": "npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "prepare": "npm run build"
     },
     "keywords": [],
     "author": "",
@@ -23,11 +29,34 @@
         "chai": "5.1.1",
         "fetch-mock": "9.11.0",
         "mocha": "10.4.0",
-        "node-fetch": "2.6.1",
         "ts-node": "10.9.2",
         "typescript": "5.4.5"
     },
+    "optionalDependencies": {
+        "@types/node-fetch": "^2.6.12",
+        "node-fetch": "^2.6.1"
+    },
     "devDependencies": {
         "tsx": "4.17.0"
+    },
+    "browser": {
+        "./dist/cjs/index.js": "./dist/esm/index.js"
+    },
+    "exports": {
+        ".": {
+            "browser": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js",
+            "types": "./dist/types/index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "CommonJS",
+        "outDir": "./dist/cjs"
     }
 }

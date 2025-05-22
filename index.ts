@@ -1,4 +1,2 @@
-import JustPushMessage from './src/services/JustPushMessage.js'
-import JustPushTopic from './src/services/JustPushTopic.js'
-
-export { JustPushMessage, JustPushTopic }
+export {JustPushMessage} from './src/services/JustPushMessage.ts'
+export {JustPushTopic} from './src/services/JustPushTopic.ts'

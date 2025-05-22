@@ -1,16 +1,16 @@
 {
     "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs",
-        "strict": true,
+        "target": "ES2018",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "./dist/esm",
         "esModuleInterop": true,
-        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist"
+        "strict": true,
+        "skipLibCheck": true,
+        "lib": ["ES2018", "DOM"]
     },
-    "ts-node": {
-        "esm": true
-    },
-    "include": ["src/**/*.ts", "test/**/*.ts", "*.ts"],
-    "exclude": ["node_modules"]
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }
