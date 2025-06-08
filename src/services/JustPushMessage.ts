@@ -4,20 +4,29 @@ import JustPushBase from "../utils/JustPushBase";
 interface Button {
   cta: string;
   url: string;
-  action_required: boolean;
+  action_required?: boolean;
 }
 
 interface ButtonFromGroup {
   cta: string;
   url: string;
-  requires_action: boolean;
+  action_required: boolean;
 }
 
 interface ButtonGroup {
   name: string;
   cta: string;
-  action_required: boolean;
+  action_required?: boolean;
   buttons: ButtonFromGroup[];
+}
+
+interface AcknowledgeParams {
+  requiresAcknowledgement: boolean;
+  callbackUrl?: string | null;
+  callbackParams?: Record<string, any> | null;
+  requiresRetry?: boolean;
+  retryInterval?: number;
+  maxRetries?: number;
 }
 
 export class JustPushMessage extends JustPushBase {
@@ -72,7 +81,7 @@ export class JustPushMessage extends JustPushBase {
     return this;
   }
 
-  button(cta: string, url: string, action_required = false): this {
+  button({ cta, url, action_required = false }: Button): this {
     if (!this.messageParams["buttons"]) {
       this.messageParams["buttons"] = [];
     }
@@ -82,7 +91,11 @@ export class JustPushMessage extends JustPushBase {
 
   buttons(buttons: Button[]): this {
     buttons.forEach((button) =>
-      this.button(button.cta, button.url, button.action_required)
+      this.button({
+        cta: button.cta,
+        url: button.url,
+        action_required: button.action_required,
+      })
     );
     return this;
   }
@@ -130,14 +143,14 @@ export class JustPushMessage extends JustPushBase {
     return this;
   }
 
-  acknowledge(
-    requiresAcknowledgement: boolean,
-    callbackUrl: string | null = null,
-    callbackParams: Record<string, any> | null = null,
-    requiresRetry: boolean = true,
-    retryInterval: number = 60,
-    maxRetries: number = 10
-  ): this {
+  acknowledge({
+    requiresAcknowledgement,
+    callbackUrl = null,
+    callbackParams = null,
+    requiresRetry = false,
+    retryInterval = 60,
+    maxRetries = 10,
+  }: AcknowledgeParams): this {
     let retryIntervalPayload = {};
     if (requiresRetry) {
       retryIntervalPayload = {
@@ -185,4 +198,4 @@ export class JustPushMessage extends JustPushBase {
   }
 }
 
-export type { Button, ButtonGroup };
+export type { Button, ButtonGroup, AcknowledgeParams, ButtonFromGroup };

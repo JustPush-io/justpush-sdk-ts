@@ -35,7 +35,16 @@ const sendAckMessage = async () => {
     .topic("TestTopic")
     .title("Test Title")
     .message("Here is a message with ack")
-    .acknowledge(true, "https://www.google.ro")
+    .acknowledge({
+      requiresAcknowledgement: true,
+      callbackUrl: "https://webhook.site/6c19f1ed-230c-4aa7-8679-5ea4e5eec345",
+      callbackParams: {
+        test: "test",
+      },
+      requiresRetry: true,
+      retryInterval: 60,
+      maxRetries: 10,
+    })
     .create();
 };
 
@@ -45,8 +54,21 @@ const sendButtonsMessage = async () => {
     .topic("TestTopic")
     .title("Test Title")
     .message("Here is a message with ack")
-    .acknowledge(true, "https://www.google.ro")
-    .button("Button 1", "https://google.com", true)
+    .acknowledge({
+      requiresAcknowledgement: true,
+      callbackUrl: "https://webhook.site/6c19f1ed-230c-4aa7-8679-5ea4e5eec345",
+      callbackParams: {
+        test: "test",
+      },
+      requiresRetry: true,
+      retryInterval: 60,
+      maxRetries: 10,
+    })
+    .button({
+      cta: "Button 1",
+      url: "https://google.com",
+      action_required: true,
+    })
     .create();
 };
 
@@ -70,17 +92,17 @@ const sendButtonGroupsMessage = async () => {
           {
             cta: "Button 1",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
           {
             cta: "Button 2",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
           {
             cta: "Button 3",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
         ],
       },
@@ -92,17 +114,17 @@ const sendButtonGroupsMessage = async () => {
           {
             cta: "Button 1",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
           {
             cta: "Button 2",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
           {
             cta: "Button 3",
             url: "https://google.com",
-            requires_action: true,
+            action_required: true,
           },
         ],
       },
@@ -115,6 +137,7 @@ const test = async () => {
     await sendSimpleTextMesage();
     await sendImageMesage();
     await sendAckMessage();
+    await sendButtonGroupsMessage();
     const lastMessage = await sendButtonsMessage();
 
     // // Wait for 5 seconds
