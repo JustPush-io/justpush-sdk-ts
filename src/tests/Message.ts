@@ -29,7 +29,7 @@ const sendImageMesage = async () => {
     .create();
 };
 
-const sendAckMesage = async () => {
+const sendAckMessage = async () => {
   console.log("Send ack message...");
   return await JustPushMessage.token(ACCESS_TOKEN)
     .topic("TestTopic")
@@ -39,10 +39,10 @@ const sendAckMesage = async () => {
     .create();
 };
 
-const sendButtonsMesage = async () => {
+const sendButtonsMessage = async () => {
   console.log("Send button message...");
   return await JustPushMessage.token(ACCESS_TOKEN)
-    .topic("Q5 Tracker")
+    .topic("TestTopic")
     .title("Test Title")
     .message("Here is a message with ack")
     .acknowledge(true, "https://www.google.ro")
@@ -112,16 +112,16 @@ const sendButtonGroupsMessage = async () => {
 
 const test = async () => {
   try {
-    // await sendSimpleTextMesage();
-    // await sendImageMesage();
-    // await sendAckMesage();
-    const lastMessage = await sendButtonsMesage();
+    await sendSimpleTextMesage();
+    await sendImageMesage();
+    await sendAckMessage();
+    const lastMessage = await sendButtonsMessage();
 
     // // Wait for 5 seconds
-    // await new Promise((resolve) => setTimeout(resolve, 10000));
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
     // // Retrieve the message
-    // await getMessage(lastMessage.key);
+    await getMessage(lastMessage.key);
   } catch (error) {
     console.error("Error:", error);
   }

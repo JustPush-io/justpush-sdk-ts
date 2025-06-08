@@ -136,8 +136,7 @@ export class JustPushMessage extends JustPushBase {
     callbackParams: Record<string, any> | null = null,
     requiresRetry: boolean = true,
     retryInterval: number = 60,
-    maxRetries: number = 10,
-    callbackRequired: boolean = false
+    maxRetries: number = 10
   ): this {
     let retryIntervalPayload = {};
     if (requiresRetry) {
@@ -147,12 +146,16 @@ export class JustPushMessage extends JustPushBase {
         max_retries: maxRetries,
       };
     }
-    this.messageParams["acknowledgement"] = {
+    this.messageParams = {
+      ...this.messageParams,
       requires_acknowledgement: requiresAcknowledgement,
-      callback_required: callbackRequired,
-      callback_url: callbackUrl,
-      callback_params: callbackParams,
-      ...retryIntervalPayload,
+      acknowledgement: {
+        callback: {
+          url: callbackUrl,
+          params: JSON.stringify(callbackParams),
+        },
+        ...retryIntervalPayload,
+      },
     };
     return this;
   }
