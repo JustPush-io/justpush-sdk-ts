@@ -43,9 +43,9 @@ const response = await JustPushMessage.token("REPLACE_WITH_USER_TOKEN")
 | `topic`           | `(topic: string)`                                                                                                                                                                     | Either the UUID or the name of the topic you want to send the message to |
 | `image`           | `(url: string, caption: string)`                                                                                                                                                      | Adds an image the to the message                                         |
 | `images`          | `(images: Array<{url: string, caption: string}>)`                                                                                                                                     | Adds multiple images                                                     |
-| `button`          | `(cta: string, url: string, requires_action: boolean)`                                                                                                                                | Adds a button to the message                                             |
+| `button`          | `(cta: string, url: string, action_required: boolean)`                                                                                                                                | Adds a button to the message                                             |
 | `buttons`         | `(buttons: Array<button>)`                                                                                                                                                            | Adds multiple buttons to the message                                     |
-| `buttonGroups`    | `(groups: Array<{name: string, cta: string, action_required: boolean, buttons: Array<{cta: string, url: string, requires_action: boolean}>}>)`                                        | Adds groups of buttons to the message, each with its own name and CTA    |
+| `buttonGroups`    | `(groups: Array<{name: string, cta: string, action_required: boolean, buttons: Array<{cta: string, url: string, action_required: boolean}>}>)`                                        | Adds groups of buttons to the message, each with its own name and CTA    |
 | `sound`           | `(sound: string)`                                                                                                                                                                     | Define the sound of the message                                          |
 | `priority`        | `(priority: 2 \| 1 \| 0 \| -1 \| -2)`                                                                                                                                                 | Manually set the priority                                                |
 | `highestPriority` | `()`                                                                                                                                                                                  | Set the message priority on `2`                                          |
@@ -85,12 +85,12 @@ const response = await JustPushMessage.token("REPLACE_WITH_USER_TOKEN")
         {
           cta: "Button 1",
           url: "https://google.com",
-          requires_action: true,
+          action_required: true,
         },
         {
           cta: "Button 2",
           url: "https://google.com",
-          requires_action: true,
+          action_required: true,
         },
       ],
     },
@@ -102,12 +102,12 @@ const response = await JustPushMessage.token("REPLACE_WITH_USER_TOKEN")
         {
           cta: "Button 1",
           url: "https://google.com",
-          requires_action: true,
+          action_required: true,
         },
         {
           cta: "Button 2",
           url: "https://google.com",
-          requires_action: true,
+          action_required: true,
         },
       ],
     },
@@ -132,7 +132,7 @@ Each button in the `buttons` array has these fields:
 | ----------------- | ------- | -------- | ---------------------------------------------------- |
 | `cta`             | string  | Yes      | The text displayed on the button                     |
 | `url`             | string  | Yes      | The URL the button links to                          |
-| `requires_action` | boolean | Yes      | Whether user interaction is required for this button |
+| `action_required` | boolean | Yes      | Whether user interaction is required for this button |
 
 ### Setting an Expiry
 
